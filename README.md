@@ -111,14 +111,17 @@ The `RandomAgent` class represents an intelligent agent that uses a convolutiona
 
 ### Initialization
 
+The RandomAgent class is initialized with the paths to the data folder (data_folder) containing Rock, Scissors, and Paper images, and the model folder (model_folder) where the trained CNN model will be saved.
 ```python
 # Example initialization
 random_agent = RandomAgent(data_folder='/content/data_folder', model_folder='/content/model_folder')
 ```
-The RandomAgent class is initialized with the paths to the data folder (data_folder) containing Rock, Scissors, and Paper images, and the model folder (model_folder) where the trained CNN model will be saved.
+
 
 ##Methods
+
 ###load_and_preprocess_image
+
 This method loads and preprocesses an image:
 
 ```python
