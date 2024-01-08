@@ -45,3 +45,16 @@ paper_folder = '/content/Paper'
 # Move mapping dictionary
 move_mapping = {'Rock': 0, 'Scissors': 1, 'Paper': 2}
 
+
+## Image Loading and Preprocessing
+
+The following function, `load_and_preprocess_image`, is used to load, resize, and normalize images for further processing in the project.
+
+```python
+# Function for loading, resizing, and normalizing an image
+def load_and_preprocess_image(image_path, move_mapping):
+    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)  # Convert to grayscale
+    img = cv2.resize(img, (100, 100)) / 255.0  # Normalize to [0, 1] and resize
+    move = os.path.basename(os.path.dirname(image_path))
+    move_value = move_mapping.get(move, None)
+    return img, move_value
