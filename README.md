@@ -23,4 +23,25 @@ You can find the dataset on https://www.kaggle.com/datasets/drgfreeman/rockpaper
    b. Apply Horizontal Flip with probability p2.
    c. Add white noise with mean 0 and standard deviation 5% of the max pixel value.
 
-   
+### Our Agent Operations:
+
+1. Get a CNN model trained on the training set.
+2. Get the augmented picture from the Random Agent and choose the move that beats it.
+
+## Project Structure
+
+The project is organized into the following directories in Google Colab:
+
+- `Rock`: Contains images corresponding to the Rock move.
+- `Scissors`: Contains images corresponding to the Scissors move.
+- `Paper`: Contains images corresponding to the Paper move.
+
+```python
+# Folder paths in Google Colab
+rock_folder = '/content/Rock'
+scissors_folder = '/content/Scissors'
+paper_folder = '/content/Paper'
+
+# Move mapping dictionary
+move_mapping = {'Rock': 0, 'Scissors': 1, 'Paper': 2}
+
