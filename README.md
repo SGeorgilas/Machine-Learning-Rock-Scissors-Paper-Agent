@@ -123,7 +123,7 @@ random_agent = RandomAgent(data_folder='/content/data_folder', model_folder='/co
 
 This method loads and preprocesses an image:
 
-```python
+```python 
 # Example usage
 image_path = '/content/Rock/rock_image.jpg'
 img = random_agent.load_and_preprocess_image(image_path)
