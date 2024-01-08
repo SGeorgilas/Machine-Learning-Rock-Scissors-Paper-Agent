@@ -118,8 +118,8 @@ random_agent = RandomAgent(data_folder='/content/data_folder', model_folder='/co
 ```
 
 
-
-##load_and_preprocess_image
+## Methods
+### load_and_preprocess_image
 
 This method loads and preprocesses an image:
 
@@ -129,7 +129,7 @@ image_path = '/content/Rock/rock_image.jpg'
 img = random_agent.load_and_preprocess_image(image_path)
 ```
 
-##build_and_train_model
+### build_and_train_model
 This method builds and trains the CNN model using images from the specified data folder:
 
 ```python
@@ -137,7 +137,7 @@ This method builds and trains the CNN model using images from the specified data
 model, train_images, test_images, train_labels, test_labels = random_agent.build_and_train_model()
 ```
 
-##choose_random_image
+### choose_random_image
 This method randomly chooses an image, optionally from a provided test set:
 
 ```python
@@ -145,7 +145,7 @@ This method randomly chooses an image, optionally from a provided test set:
 random_image, move_name = random_agent.choose_random_image(p1=0.5, p2=0.5, noise_std=0.05, test_set_images=test_images, test_labels=test_labels)
 ```
 
-##augment_image
+### augment_image
 This method augments an image by applying random flips and adding noise:
 
 ```python
