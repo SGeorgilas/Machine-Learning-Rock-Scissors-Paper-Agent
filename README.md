@@ -256,3 +256,6 @@ plt.show()
 ```
 
 
+The following plot illustrates the budget changes over the course of the simulated rounds between the Random Agent and Your Agent.
+
+![Budget History Plot](https://github.com/SGeorgilas/Machine-Learning-Rock-Scissors-Paper-Agent/blob/main/Budget%20History.png)
