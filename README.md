@@ -152,3 +152,107 @@ This method augments an image by applying random flips and adding noise:
 # Example usage
 augmented_image = random_agent.augment_image(img, p1=0.5, p2=0.5, noise_std=0.05)
 ```
+
+## YourAgent Class
+
+The `YourAgent` class represents an agent designed to recognize Rock, Scissors, or Paper moves using a pre-trained model.
+
+### Initialization
+
+```python
+# Example initialization
+your_agent = YourAgent(model_folder='/content/your_model_folder')
+```
+
+### read_image
+This method applies the pre-trained model to recognize the move in the provided image:
+
+```python
+# Example usage
+image = your_agent.read_image(your_image_array)
+```
+
+## Select Best Action Function
+
+The `select_best_action` function is called by the Random Agent to choose the optimal action based on the prediction made by the `YourAgent` class.
+
+```python
+# Example usage
+best_action, predicted_move = select_best_action(your_image_array)
+```
+
+## Simulation Script
+
+The following script simulates a series of rounds between the Random Agent and Your Agent playing the Rock-Paper-Scissors game. The budget is updated based on the outcome of each round.
+
+```python
+# Initialize parameters
+p1 = 0.5
+p2 = 0.5
+noise_std = 0.05
+budget = 0
+budget_history = []
+
+# Build and train the model, and get the train/test datasets
+model, train_images, test_images, train_labels, test_labels = random_agent.build_and_train_model()
+
+for round_num in range(1, 201):
+    print(f"\nRound {round_num}")
+    random_image, actual_move = random_agent.choose_random_image(p1, p2, noise_std, test_set_images=test_images, test_labels=test_labels)
+    # Select the best action using Your Agent
+    best_action, predicted_action = select_best_action(random_image)
+    print("Predicted move is " + predicted_action + " and playing " + best_action)
+    print("The actual move was " + str(actual_move))
+    Image.fromarray((random_image * 255).astype(np.uint8))
+    
+    # Update budget based on the outcome
+    if str(actual_move) == 'Rock':
+        if best_action == 'Rock':
+            print("It's a draw!")
+        elif best_action == 'Paper':
+            print("Your Agent wins!")
+            budget = budget + 1
+        else:
+            print("Random Agent wins!")
+            budget = budget - 1
+    elif str(actual_move) == 'Paper':
+        if best_action == 'Rock':
+            print("Random Agent wins!")
+            budget = budget - 1
+        elif best_action == 'Paper':
+            print("It's a draw!")
+        else:
+            print("Your Agent wins!")
+            budget = budget + 1
+    elif str(actual_move) == 'Scissors':
+        if best_action == 'Rock':
+            print("Your Agent wins!")
+            budget = budget + 1
+        elif best_action == 'Paper':
+            print("Random Agent wins!")
+            budget = budget - 1
+        else:
+            print("It's a draw!")
+    
+    # Append the budget to the history
+    budget_history.append(budget)
+```
+
+## Budget History Plot
+
+The following plot illustrates the budget changes over the course of the simulated rounds between the Random Agent and Your Agent.
+
+```python
+import matplotlib.pyplot as plt
+
+# Your simulation code here
+
+# Plot the budget history
+plt.plot(range(1, 201), budget_history, label="Budget")
+plt.xlabel("Rounds")
+plt.ylabel("Budget")
+plt.legend()
+plt.show()
+```
+
+
